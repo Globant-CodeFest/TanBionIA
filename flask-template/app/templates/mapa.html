@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+
+{% block styles %}
+<style>
+/* Estilos para la barra superior */
+#filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+
+#filter-bar select,
+#filter-bar input {
+  margin-right: 10px;
+}
+
+#filter-bar button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+ <!-- Barra superior de filtros -->
+ <div id="filter-bar">
+    <input type="text" id="fecha-desde" placeholder="Fecha desde">
+    <input type="text" id="fecha-hasta" placeholder="Fecha hasta">
+    <input type="text" id="Minima-Cantidad-de-Muertos" placeholder="Muertos Minimos">
+    <button onclick="aplicarFiltros()">Aplicar filtros</button>
+  </div>
+  <iframe id="mapa-iframe" src="/data_mapa" frameborder="0" width="1080" height="620"></iframe>
+  
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    // Función para aplicar los filtros seleccionados
+    function aplicarFiltros() {
+
+        const mapaIframe = document.getElementById('mapa-iframe');
+        const fechaDesde = document.getElementById('fecha-desde').value;
+        const fechaHasta = document.getElementById('fecha-hasta').value;
+        const MinimaCantidaddeMuertos = document.getElementById('Minima-Cantidad-de-Muertos').value;
+
+        // Realizar acciones con los filtros seleccionados
+        // Por ejemplo, puedes actualizar el src del iframe para cargar el mapa con los parámetros seleccionados
+        const url = `/data_mapa?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}&MinimaCantidaddeMuertos=${MinimaCantidaddeMuertos}`;
+        mapaIframe.src = url;
+    }
+
+  // Inicializar los campos de texto como datepickers de jQuery UI
+  $(document).ready(function() {
+    $("#fecha-desde").datepicker();
+    $("#fecha-hasta").datepicker();
+  });
+</script>
+{% endblock %}

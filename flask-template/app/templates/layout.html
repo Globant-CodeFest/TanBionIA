@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  background-color: gray;
+  color: white;
+  padding: 20px;
+  width: 200px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid white;
+}
+
+.sidebar ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  margin-left: 10px;
+  padding-bottom: 5px;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.sidebar ul li a.highlighted {
+  background-color: #777;
+} 
+
+
+</style>
+{% block styles %}
+{% endblock %}
+</head>
+<body>
+
+
+<!--hacer un panel lateral izquierdo con los botones "Mapa","Resumen","Paises" y "Predicciones", que tenga fondo negro y letra blanca-->
+
+
+<div class="container">
+    <div class="sidebar">
+        <ul>
+          <li><a href="/mapa" onclick="highlightMenu(this)">Mapa</a></li>
+          <li><a href="/resumen" onclick="highlightMenu(this)">Resumen</a></li>
+          <li><a href="/paises" onclick="highlightMenu(this)">Países</a></li>
+          <li><a href="/predicciones" onclick="highlightMenu(this)">Predicciones</a></li>
+        </ul>
+      </div>
+    <div class="content" >
+      <!-- Aquí puedes añadir el contenido deseado -->
+      {% block content %}
+      {% endblock %}
+    </div>
+</div>
+  
+
+<script>
+
+function highlightMenu(element) {
+    // Eliminar la clase "highlighted" de todos los elementos de menú
+    var menuItems = document.querySelectorAll('.sidebar ul li a');
+    menuItems.forEach(function(item) {
+      item.classList.remove('highlighted');
+    });
+  
+    // Agregar la clase "highlighted" al elemento de menú clickeado
+    element.classList.add('highlighted');
+  }
+
+
+</script>
+
+
+{% block scripts %}
+{% endblock %}
+
+
+
+   
+</body>
+</html>
+
+

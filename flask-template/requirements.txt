@@ -1,0 +1,4 @@
+Flask==2.0.1
+psycopg2==2.9.3
+Flask-Session==0.4
+black==22.3.0
